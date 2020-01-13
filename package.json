@@ -1,0 +1,17 @@
+{
+  "name": "eg-tracker",
+  "version": "0.0.1-alpha",
+  "dependencies": {
+    "underscore": "^1.9.2",
+    "xml2js": "^0.4.23"
+  },
+  "description": "Tracking EG across the Atlantic",
+  "author": {
+    "name": "Antoine Amiguet",
+    "email": "amiguet.antoine@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ashleygwilliams/my_package.git"
+  }
+}
