@@ -25,16 +25,58 @@ function geo(coordinates) {
           type: 'LineString',
           coordinates: coordinates
         }
+      },
+      {
+        type: "Feature",
+        properties: {},
+        geometry: {
+          type: "Point",
+          coordinates: [
+            -5.785443,
+            -15.9587411
+          ]
+        }
       }
     ]
   };
+}
+
+function matchItem(storedItems, itemTest) {
+  let match = false;
+  storedItems.forEach(item => {
+    match = match || (item.pubDate[0] === itemTest.pubDate[0]);
+  });
+  return match;
+}
+
+function updateItems(items) {
+  let storedItems;
+  try {
+    storedItem = JSON.parse(fs.readFileSync('items.json'));
+  } catch {
+    storedItems = [];
+  }
+  items.forEach(item => {
+    if (!matchItem(storedItems, item)) {
+      storedItems.push(item);
+    }
+  });
+  fs.writeFileSync('items.json', JSON.stringify(storedItems, null, 2));
+  return storedItems;
+}
+
+function sortItems(item1, item2) {
+  var d1 = new Date(item1.pubDate[0]);
+  var d2 = new Date(item2.pubDate[0]);
+  return d1 - d2;
 }
 
 function process(xml) {
   parser.parseString(xml, (error, result) => {
     if (error === null) {
       const items = _.filter(result.rss.channel[0].item, (i) => { return i.title[0] === itemTitle; });
-      const coords = _.map(items, coordinate).reverse();
+      const allItems = updateItems(items).sort(sortItems);
+      const coords = _.map(allItems, coordinate);
       fs.writeFileSync('eg-route.json', JSON.stringify(geo(coords), null, 2));
     } else {
       console.log(error);
