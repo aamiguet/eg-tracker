@@ -52,7 +52,7 @@ function matchItem(storedItems, itemTest) {
 function updateItems(items) {
   let storedItems;
   try {
-    storedItem = JSON.parse(fs.readFileSync('items.json'));
+    storedItems = JSON.parse(fs.readFileSync('items.json'));
   } catch {
     storedItems = [];
   }
