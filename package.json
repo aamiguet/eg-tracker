@@ -2,7 +2,7 @@
   "name": "eg-tracker",
   "version": "0.0.1-alpha",
   "dependencies": {
-    "underscore": "^1.9.2",
+    "underscore": "^1.12.1",
     "xml2js": "^0.4.23"
   },
   "description": "Tracking EG across the Atlantic",
