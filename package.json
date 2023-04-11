@@ -3,7 +3,7 @@
   "version": "0.0.1-alpha",
   "dependencies": {
     "underscore": "^1.12.1",
-    "xml2js": "^0.4.23"
+    "xml2js": "^0.5.0"
   },
   "description": "Tracking EG across the Atlantic",
   "author": {
